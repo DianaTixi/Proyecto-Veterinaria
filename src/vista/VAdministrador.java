@@ -164,14 +164,14 @@ public class VAdministrador extends JFrame implements ActionListener {
     }
     
     public void llamarVentanaAgregarE(){
-        VAgregarEmp vae = new VAgregarEmp();
+        VAgregarEmpleado vae = new VAgregarEmpleado();
         vae.setVisible(true);
         
         escritorioA.add(vae);
     }
 
     public void llamarVentanaModificarE() {
-        VModificarEmp vme = new VModificarEmp();
+        VModificarEmpleado vme = new VModificarEmpleado();
         vme.setVisible(true);
         
         escritorioA.add(vme);
@@ -199,7 +199,7 @@ public class VAdministrador extends JFrame implements ActionListener {
     }
 
     public void llamarVentanaAgregarPd() {
-        VAgregarProd vapd = new VAgregarProd();
+        VAgregarProducto vapd = new VAgregarProducto();
         vapd.setVisible(true);
         
         escritorioA.add(vapd);

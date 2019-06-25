@@ -17,9 +17,9 @@ import javax.swing.JTextField;
  * @author Rakrad7101
  */
 
-public class VAgregarEmp extends JInternalFrame implements ActionListener{
+public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
     
-    public VAgregarEmp(){
+    public VAgregarEmpleado(){
         initComponentes();
         ventanaAgregarEmp();
     }

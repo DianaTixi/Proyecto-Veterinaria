@@ -16,9 +16,9 @@ import javax.swing.JTextField;
  *
  * @author Rakrad7101
  */
-public class VModificarEmp extends JInternalFrame implements ActionListener{
+public class VModificarEmpleado extends JInternalFrame implements ActionListener{
 
-    public VModificarEmp(){
+    public VModificarEmpleado(){
         initComponentes();
         ventanaModificarEmp();
     }
