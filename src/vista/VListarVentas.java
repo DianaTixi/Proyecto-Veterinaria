@@ -26,7 +26,7 @@ public class VListarVentas extends JInternalFrame implements ActionListener{
     
     public void initComponentes(){
         setSize(400,400);
-        setTitle("Lsitar Ventas");
+        setTitle("Listar Ventas");
     }
     
     JButton b1;

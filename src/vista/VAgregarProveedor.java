@@ -15,9 +15,9 @@ import javax.swing.JTextField;
  *
  * @author Rakrad7101
  */
-public class VAgregarProv extends JInternalFrame implements ActionListener{
+public class VAgregarProveedor extends JInternalFrame implements ActionListener{
     
-    public VAgregarProv(){
+    public VAgregarProveedor(){
         initComponentes();
         ventanaAgregarProv();
     }

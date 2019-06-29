@@ -44,7 +44,9 @@ public class VAgregarProducto extends JInternalFrame implements ActionListener{
         
         cb1 = new JComboBox<>();
             cb1.addItem("Servicio");
-            cb1.addItem("Producto");
+            cb1.addItem("Accesorios");
+            cb1.addItem("Comida");
+            cb1.addItem("Medicina");
         g1.gridx =1;
         g1.gridy =0;
         cp.add(cb1, g1);

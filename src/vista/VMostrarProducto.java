@@ -17,9 +17,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rakrad7101
  */
-public class VMostrarProd extends JInternalFrame implements ActionListener{
+public class VMostrarProducto extends JInternalFrame implements ActionListener{
 
-    public VMostrarProd(){
+    public VMostrarProducto(){
         initComponentes();
         ventanaMostrarProd();
     }

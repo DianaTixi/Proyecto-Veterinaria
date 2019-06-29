@@ -16,30 +16,31 @@ import javax.swing.JTextField;
  *
  * @author Rakrad7101
  */
-public class VModificarProv extends JInternalFrame implements ActionListener{
+public class VModificarProducto extends JInternalFrame implements ActionListener{
     
-    public VModificarProv(){
+    public VModificarProducto(){
         initComponentes();
-        ventanaModificarProv();
+        ventanaModificarProd();
     }
     
     public void initComponentes(){
         setSize(400, 400);
-        setTitle("Modificar Proveedores");
+        setTitle("Modificar Productos");
     }
     
     private JButton b1;
     private JButton b2;
     private JButton b3;
     private JButton b4;
+    private JComboBox<String> cb1;
     
-    public void ventanaModificarProv(){
+    public void ventanaModificarProd(){
         
         Container cp = getContentPane();
         GridBagConstraints g1 = new GridBagConstraints();       
         cp.setLayout(new GridBagLayout()); 
         
-        JLabel l1 = new JLabel("RUC:");
+        JLabel l1 = new JLabel("Nombre:");
         g1.gridx =0;
         g1.gridy =0;
         cp.add(l1, g1);
@@ -56,58 +57,72 @@ public class VModificarProv extends JInternalFrame implements ActionListener{
         g1.gridy =0;
         cp.add(b1, g1);
         
-        JLabel l2 = new JLabel("Razón Social:");
+        JLabel l2 = new JLabel("Categoría:");
         g1.gridx =0;
         g1.gridy =1;
         cp.add(l2, g1);
         
-        JTextField t2 = new JTextField(12);
+        cb1 = new JComboBox<>();
+            cb1.addItem("Servicio");
+            cb1.addItem("Accesorios");
+            cb1.addItem("Comida");
+            cb1.addItem("Medicina");
         g1.gridx =1;
         g1.gridy =1;
-        cp.add(t2, g1);
+        cp.add(cb1, g1);
         
-        JLabel l3 = new JLabel("Correo:");
+        JLabel l3 = new JLabel("Descripción:");
         g1.gridx =0;
         g1.gridy =2;
         cp.add(l3, g1);
         
-        JTextField t3 = new JTextField(12);
+        JTextField t2 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =2;
-        cp.add(t3, g1);
+        cp.add(t2, g1);
         
-        JLabel l4 = new JLabel("Dirección:");
+        JLabel l4 = new JLabel("Precio:");
         g1.gridx =0;
         g1.gridy =3;
         cp.add(l4, g1);
         
-        JTextField t4 = new JTextField(12);
+        JTextField t3 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =3;
+        cp.add(t3, g1);
+        
+        JLabel l5 = new JLabel("Stock");
+        g1.gridx =0;
+        g1.gridy =4;
+        cp.add(l5, g1);
+        
+        JTextField t4 = new JTextField(12);
+        g1.gridx =1;
+        g1.gridy =4;
         cp.add(t4, g1);
         
         b2 = new JButton("Volver");
         g1.gridx = 0;
-        g1.gridy = 4;
+        g1.gridy = 5;
         b2.addActionListener(this);
         b2.setActionCommand("volver");
         cp.add(b2, g1); 
         
         b3 = new JButton("Editar");
         g1.gridx = 1;
-        g1.gridy = 4;
+        g1.gridy = 5;
         b3.addActionListener(this);
         b3.setActionCommand("editar");
         cp.add(b3, g1);
         
         b4 = new JButton("Eliminar");
         g1.gridx = 2;
-        g1.gridy = 4;
+        g1.gridy = 5;
         b4.addActionListener(this);
         b4.setActionCommand("eliminar");
-        cp.add(b4, g1); 
+        cp.add(b4, g1);
         
-    }
+    }    
     
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -22,6 +24,8 @@ public class VIniciarSesion extends JFrame implements ActionListener{
     String user;
     String contra;
     
+    int v;
+    
     public VIniciarSesion(){
         ventanaIniciar();
         initComponentes();
@@ -33,6 +37,8 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    JTextField t1;
+    
     public void ventanaIniciar(){
         
         Container cp = getContentPane();
@@ -41,27 +47,27 @@ public class VIniciarSesion extends JFrame implements ActionListener{
                 
         cp.setLayout(new GridBagLayout());
         
-        JLabel l1 = new JLabel("Username");
+        JLabel l1 = new JLabel("Username:");
         g1.gridx =0;
         g1.gridy =0;
         cp.add(l1, g1);
         
-        JTextField t1 = new JTextField(10);
+        t1 = new JTextField(10);
         g1.gridx =1;
         g1.gridy =0;
         cp.add(t1, g1);
         
-        JLabel l2 = new JLabel("Contraseña");
+        JLabel l2 = new JLabel("Contraseña:");
         g1.gridx =0;
         g1.gridy =1;
         cp.add(l2, g1);
         
-        JTextField t2 = new JTextField(10);
+        JPasswordField t2 = new JPasswordField(10);
         g1.gridx =1;
         g1.gridy =1;
         cp.add(t2, g1);
         
-        b1 = new JButton("Log In");
+        b1 = new JButton("Iniciar Sesión");
         g1.gridx =0;
         g1.gridy =2;
         g1.gridwidth = 2;
@@ -79,8 +85,27 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         
         switch(comando){
             case "iniciar":
-                llamarVentanaAdministrador();
-                setVisible(false);
+                
+                try {
+                    user = t1.getText();
+                    v = Integer.parseInt(user);
+                    
+                    if(v == 1){
+                        llamarVentanaAdministrador();
+                        setVisible(false);
+                    }else if(v == 2){
+                        llamarVentanaSecretaria();
+                        setVisible(false);
+                    }else if(v ==3){
+                        llamarVentanaMedico();
+                        setVisible(false);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+                    }
+                    
+                } catch (NumberFormatException r) {
+                    r.printStackTrace();
+                }
                 break;
         }
      
@@ -88,8 +113,16 @@ public class VIniciarSesion extends JFrame implements ActionListener{
     
     public void llamarVentanaAdministrador(){
         VAdministrador vA = new VAdministrador();
-        vA.setVisible(true);
-        
+        vA.setVisible(true); 
     }
     
+    public void llamarVentanaSecretaria(){
+        VSecretaria vS = new VSecretaria();
+        vS.setVisible(true); 
+    }
+    
+    public void llamarVentanaMedico(){
+        VMedico vM = new VMedico();
+        vM.setVisible(true); 
+    }
 }

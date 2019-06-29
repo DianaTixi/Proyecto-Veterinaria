@@ -50,15 +50,21 @@ public class VSecretaria extends JFrame implements ActionListener{
             i2.setActionCommand("modificarCl");
             m1.add(i2);
             
+            JMenuItem i9 = new JMenuItem("Agregar Mascota");
+            i9.addActionListener(this);
+            i9.setActionCommand("agregarM");
+            m1.add(i9);
+            
+            JMenuItem i10 = new JMenuItem("Modificar Mascota");
+            i10.addActionListener(this);
+            i10.setActionCommand("modificarM");
+            m1.add(i10);
+            
         barra.add(m1);
         
         //Agrega opciones a la barra de menu
         JMenu m2 = new JMenu("Citas");
             //Ingresa items en la opcion
-            JMenuItem i3 = new JMenuItem("Mostrar Cronograma");
-            i3.addActionListener(this);
-            i3.setActionCommand("mostrarC");
-            m2.add(i3);
             
             JMenuItem i4 = new JMenuItem("Realizar Cita");
             i4.addActionListener(this);
@@ -88,7 +94,7 @@ public class VSecretaria extends JFrame implements ActionListener{
         barra.add(m3);
        
         JMenu m4 = new JMenu("Cerrar Sesión");
-        //Ingresar items en la opción
+            //Ingresar items en la opción
             JMenuItem i8 = new JMenuItem("Cerrar");
             i8.addActionListener(this);
             i8.setActionCommand("cerrarS");
@@ -113,9 +119,13 @@ public class VSecretaria extends JFrame implements ActionListener{
                 llamarVentanaModificarCl();
                 break;
             
-            case "mostrarC":
-                llamarVentanaMostrarC();
+            case "agregarM":
+                llamarVentanaAgregarM();
                 break;
+            
+            case "modificarM":
+                llamarVentanaModificarM();
+                break;    
                     
             case "agregarC":
                 llamarVentanaRealizarC();
@@ -141,31 +151,59 @@ public class VSecretaria extends JFrame implements ActionListener{
     }
     
     public void llamarVentanaAgregarCl(){
+        VAgregarCliente vacl = new VAgregarCliente();
+        vacl.setVisible(true);
         
+        escritorioS.add(vacl);
     }
     
     public void llamarVentanaModificarCl(){
+        VModificarCliente vmcl = new VModificarCliente();
+        vmcl.setVisible(true);
         
+        escritorioS.add(vmcl);
     }
     
-    public void llamarVentanaMostrarC(){
+    public void llamarVentanaAgregarM(){
+        VAgregarMascota vam = new VAgregarMascota();
+        vam.setVisible(true);
         
+        escritorioS.add(vam);
+    }
+    
+    public void llamarVentanaModificarM(){
+        VModificarMascota vmm = new VModificarMascota();
+        vmm.setVisible(true);
+    
+        escritorioS.add(vmm);
     }
     
     public void llamarVentanaRealizarC(){
+        VRealizarCita vrc = new VRealizarCita();
+        vrc.setVisible(true);
         
+        escritorioS.add(vrc);
     }
     
     public void llamarVentanaModificarC(){
+        VModificarCita vmdc = new VModificarCita();
+        vmdc.setVisible(true);
         
+        escritorioS.add(vmdc);
     }
     
     public void llamarVentanaRealizarF(){
+        VRealizarFactura vrf = new VRealizarFactura();
+        vrf.setVisible(true);
         
+        escritorioS.add(vrf);
     }
     
     public void llamarVentanaAnularF(){
-        
+        VAnularFactura vaf = new VAnularFactura();
+        vaf.setVisible(true);
+    
+        escritorioS.add(vaf);
     }
     
     public void llamarVentanaIniciarS() {

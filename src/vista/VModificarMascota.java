@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package vista;
 
 import java.awt.BorderLayout;
@@ -21,27 +25,29 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rakrad7101
  */
-public class VModificarCita extends JInternalFrame implements ActionListener{
+public class VModificarMascota extends JInternalFrame implements ActionListener{
     
-    public VModificarCita(){
+    public VModificarMascota(){
         initComponentes();
-        ventanaModificarC();
+        ventanaModificarMas();
     }
     
     public void initComponentes(){
         setSize(500,400);
-        setTitle("Modificar Cita");
+        setTitle("Modificar Mascotas");
     }
     
     private JButton b1;
     private JButton b2;
     private JButton b3;
+    private JButton b4;
     DefaultTableModel dt;
     private JTable tb1;
     private JScrollPane scr;
-    private boolean[] editable = {true,true,true,true};
+    private boolean[] editable = {true,true, true, true, true, true, true};
     
-    public void ventanaModificarC(){
+    public void ventanaModificarMas(){
+        
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
  
@@ -49,14 +55,36 @@ public class VModificarCita extends JInternalFrame implements ActionListener{
         GridBagConstraints g1 = new GridBagConstraints(); 
         p1.setLayout(new GridBagLayout());
         
-        JLabel l1 = new JLabel("Citas");
+        JLabel l1 = new JLabel("Cédula:");
         g1.gridx =0;
         g1.gridy =0;
         p1.add(l1, g1);
         
-        dt = new DefaultTableModel(new String[]{"Fecha","Hora","Mascota","Check"}, 0) {
+        JTextField t1 = new JTextField(12);
+        g1.gridx =1;
+        g1.gridy =0;
+        p1.add(t1, g1);
+        
+        b1 = new JButton("Buscar");
+        g1.gridx = 2;
+        g1.gridy = 0;
+        b1.addActionListener(this);
+        b1.setActionCommand("buscar");
+        p1.add(b1, g1);
+        
+        JPanel p2 = new JPanel();
+        p2.setLayout(new GridBagLayout());
+        
+        JLabel l8 = new JLabel("Mascotas");
+        g1.gridx =0;
+        g1.gridy =0;
+        p2.add(l8, g1);
+        
+        dt = new DefaultTableModel(new String[]{"Nombre","Especie","Raza","Género",
+                                                "Color","Año de Nacimiento","Check"}, 0) {
  
             Class[] types = new Class[]{
+                java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,
                 java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,
                 java.lang.Boolean.class    
             };
@@ -81,31 +109,32 @@ public class VModificarCita extends JInternalFrame implements ActionListener{
         scr = new JScrollPane(tb1);
         g1.gridx = 0;
         g1.gridy = 1;
-        g1.ipadx = 300;
-        g1.ipady = 400;
+        g1.ipadx = 400;
+        g1.ipady = 100;
         g1.gridwidth =3;
-        p1.add(scr, g1);
+        p2.add(scr, g1);
         
-        JPanel p2 = new JPanel(); 
-        p2.setLayout(new FlowLayout());
+        JPanel p3 = new JPanel(); 
+        p3.setLayout(new FlowLayout());
         
-        b1 = new JButton("Volver");
-        b1.addActionListener(this);
-        b1.setActionCommand("volver");
-        p2.add(b1, g1);
-        
-        b2 = new JButton("Editar");
+        b2 = new JButton("Volver");
         b2.addActionListener(this);
-        b2.setActionCommand("editar");
-        p2.add(b2, g1); 
+        b2.setActionCommand("volver");
+        p3.add(b2, g1);
         
-        b3 = new JButton("Eiminar");
+        b3 = new JButton("Editar");
         b3.addActionListener(this);
-        b3.setActionCommand("eliminar");
-        p2.add(b3, g1);
+        b3.setActionCommand("editar");
+        p3.add(b3, g1); 
         
-        cp.add(p1, BorderLayout.CENTER);
-        cp.add(p2, BorderLayout.SOUTH);
+        b4 = new JButton("Eiminar");
+        b4.addActionListener(this);
+        b4.setActionCommand("eliminar");
+        p3.add(b4, g1);
+        
+        cp.add(p1, BorderLayout.NORTH);
+        cp.add(p2, BorderLayout.CENTER);
+        cp.add(p3, BorderLayout.SOUTH);
     }
 
     @Override
@@ -114,6 +143,9 @@ public class VModificarCita extends JInternalFrame implements ActionListener{
         System.out.println("Comando: " + comando);
         
         switch(comando){ 
+            case "buscar":
+                break;
+            
             case "volver":
                 setVisible(false);
                 break;
@@ -126,5 +158,4 @@ public class VModificarCita extends JInternalFrame implements ActionListener{
  
         }
     }
-    
 }
