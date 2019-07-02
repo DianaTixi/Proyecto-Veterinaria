@@ -202,17 +202,18 @@ public class VDiagnostico extends JInternalFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-		switch (comando) {
-			
-		case "volver":
-			this.setVisible(false);
-			break;
-			
-		default:
-			break;
-		}
-    }
+        switch (comando) {
 
-    
-    
+        case "volver":
+            this.setVisible(false);
+            break;
+
+        case "aceptar":
+            JOptionPane.showMessageDialog(null, "Operación Exitosa");
+            break;
+            
+        default:
+            break;
+        }
+    }
 }

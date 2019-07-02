@@ -80,6 +80,11 @@ public class VAdministrador extends JFrame implements ActionListener {
             i6.setActionCommand("agregarPd");
             m2.add(i6);
             
+            JMenuItem i11 = new JMenuItem("Comprar Productos");
+            i11.addActionListener(this);
+            i11.setActionCommand("comprarPd");
+            m2.add(i11);
+            
             JMenuItem i7 = new JMenuItem("Modificar Productos");
             i7.addActionListener(this);
             i7.setActionCommand("modificarPd");
@@ -143,6 +148,10 @@ public class VAdministrador extends JFrame implements ActionListener {
             case "agregarPd":
                 llamarVentanaAgregarPd();
                 break;
+                
+            case "comprarPd":
+                llamarVentanaComprarPd();
+                break;    
             
             case "modificarPd":
                 llamarVentanaModificarPd();
@@ -203,6 +212,13 @@ public class VAdministrador extends JFrame implements ActionListener {
         vapd.setVisible(true);
         
         escritorioA.add(vapd);
+    }
+    
+    public void llamarVentanaComprarPd() {
+        VComprarProducto vcpd = new VComprarProducto();
+        vcpd.setVisible(true);
+        
+        escritorioA.add(vcpd);
     }
 
     public void llamarVentanaModificarPd() {

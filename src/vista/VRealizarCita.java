@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -171,6 +172,7 @@ public class VRealizarCita extends JInternalFrame implements ActionListener{
                 break;
                 
             case "terminar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
         }
     }

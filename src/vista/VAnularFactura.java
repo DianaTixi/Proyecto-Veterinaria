@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -71,6 +72,7 @@ public class VAnularFactura extends JInternalFrame implements ActionListener{
                 break;
                 
             case "anular":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
  
         }

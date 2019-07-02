@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -140,9 +141,11 @@ public class VModificarCliente extends JInternalFrame implements ActionListener{
                 break;
                 
             case "editar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
                 
             case "eliminar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
         }
     }

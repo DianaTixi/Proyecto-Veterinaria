@@ -85,7 +85,6 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         
         switch(comando){
             case "iniciar":
-                
                 try {
                     user = t1.getText();
                     v = Integer.parseInt(user);
@@ -100,7 +99,7 @@ public class VIniciarSesion extends JFrame implements ActionListener{
                         llamarVentanaMedico();
                         setVisible(false);
                     }else{
-                        JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+                        JOptionPane.showMessageDialog(null, "Vuelva a ingresar los datos");
                     }
                     
                 } catch (NumberFormatException r) {

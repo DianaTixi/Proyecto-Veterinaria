@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -123,9 +124,11 @@ public class VModificarProveedor extends JInternalFrame implements ActionListene
                 break;
                 
             case "editar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
                 
             case "eliminar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
         }
     }

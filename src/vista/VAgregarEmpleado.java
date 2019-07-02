@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -170,6 +171,7 @@ public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
                 break;
                 
             case "agregar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
  
         }

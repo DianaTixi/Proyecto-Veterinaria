@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import java.awt.BorderLayout;
@@ -15,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -35,6 +32,7 @@ public class VModificarMascota extends JInternalFrame implements ActionListener{
     public void initComponentes(){
         setSize(500,400);
         setTitle("Modificar Mascotas");
+        setClosable(true);
     }
     
     private JButton b1;
@@ -151,9 +149,11 @@ public class VModificarMascota extends JInternalFrame implements ActionListener{
                 break;
                 
             case "editar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
                 
             case "eliminar":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;    
  
         }

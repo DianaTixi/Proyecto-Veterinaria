@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,6 +64,7 @@ public class VMetodoPago extends JInternalFrame implements ActionListener{
                 break;
             
             case "efectivo":
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 setVisible(false);
                 break;
                 

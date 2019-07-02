@@ -77,10 +77,6 @@ public class VListarVentas extends JInternalFrame implements ActionListener{
         b1.setActionCommand("volver");
         pa2.add(b1);
         
-        b2 = new JButton("Listar");
-        b2.addActionListener(this);
-        b2.setActionCommand("listar");
-        pa2.add(b2);
         
         cp.add(pa, BorderLayout.CENTER);
         cp.add(pa2, BorderLayout.SOUTH);
@@ -94,9 +90,6 @@ public class VListarVentas extends JInternalFrame implements ActionListener{
         switch(comando){
             case "volver":
                 setVisible(false);
-                break;
-                
-            case "listar":
                 break;
         }
     }
