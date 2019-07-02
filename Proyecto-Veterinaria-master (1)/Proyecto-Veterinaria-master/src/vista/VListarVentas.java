@@ -17,34 +17,34 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rakrad7101
  */
-public class VListarFacturas extends JInternalFrame implements ActionListener{
+public class VListarVentas extends JInternalFrame implements ActionListener{
     
-    public VListarFacturas(){
+    public VListarVentas(){
         initComponentes();
-        ventanaListarFac();
+        ventanaListarVen();
     }
     
     public void initComponentes(){
         setSize(400,400);
-        setTitle("Listar Facturas");
-
+        setTitle("Listar Ventas");
     }
     
     JButton b1;
+    JButton b2;
     DefaultTableModel dt;
     private JTable tb1;
     private JScrollPane scr;
     private boolean[] editable = {false,false,false};
     
-    public void ventanaListarFac(){
+    public void ventanaListarVen(){
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         
         JPanel pa = new JPanel();
         pa.setLayout(new BorderLayout()); 
         
-        dt = new DefaultTableModel(new String[]{"Nº Factura", "Cliente", 
-            "Total"}, 0) {
+        dt = new DefaultTableModel(new String[]{"Código", "Nombre", 
+            "Total Vendidos"}, 0) {
  
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
@@ -77,6 +77,7 @@ public class VListarFacturas extends JInternalFrame implements ActionListener{
         b1.setActionCommand("volver");
         pa2.add(b1);
         
+        
         cp.add(pa, BorderLayout.CENTER);
         cp.add(pa2, BorderLayout.SOUTH);
     }
@@ -92,7 +93,4 @@ public class VListarFacturas extends JInternalFrame implements ActionListener{
                 break;
         }
     }
-    
-    
-    
 }

@@ -17,29 +17,28 @@ import javax.swing.JTextField;
  *
  * @author Rakrad7101
  */
-public class VModificarEmpleado extends JInternalFrame implements ActionListener{
 
-    public VModificarEmpleado(){
+public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
+    
+    public VAgregarEmpleado(){
         initComponentes();
-        ventanaModificarEmp();
+        ventanaAgregarEmp();
+        
     }
     
     public void initComponentes(){
-        setSize(400, 400);
-        setTitle("Modificar Empleados");
+        setSize(400,400);
+        setTitle("Agregar Empleados");
         setClosable(true);
-        setMaximizable(true); 
-
+        setMaximizable(true);
     }
     
     private JButton b1;
     private JButton b2;
     private JButton b3;
-    private JButton b4;
     private JComboBox<String> cb1;
     
-    public void ventanaModificarEmp(){
-        
+    public void ventanaAgregarEmp(){
         Container cp = getContentPane();
         GridBagConstraints g1 = new GridBagConstraints();       
         cp.setLayout(new GridBagLayout()); 
@@ -53,13 +52,6 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridx =1;
         g1.gridy =0;
         cp.add(t1, g1);
-        
-        b1 = new JButton("Buscar");
-        b1.addActionListener(this);
-        b1.setActionCommand("buscar");
-        g1.gridx =2;
-        g1.gridy =0;
-        cp.add(b1, g1);
         
         JLabel l2 = new JLabel("Nombres:");
         g1.gridx =0;
@@ -123,51 +115,68 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridx =1;
         g1.gridy =6;
         cp.add(t6, g1);
+    
+        JLabel l8 = new JLabel("Usuario:");
+        g1.gridx =0;
+        g1.gridy =7;
+        cp.add(l8, g1);
+        
+        JTextField t7 = new JTextField(12);
+        g1.gridx =1;
+        g1.gridy =7;
+        cp.add(t7, g1);
+        
+        JLabel l9 = new JLabel("Contraseña:");
+        g1.gridx =0;
+        g1.gridy =8;
+        cp.add(l9, g1);
+        
+        JTextField t8 = new JTextField(12);
+        g1.gridx =1;
+        g1.gridy =8;
+        cp.add(t8, g1);
+
+        b1 = new JButton("Generar");
+        g1.gridx = 2;
+        g1.gridy = 7;
+        b1.addActionListener(this);
+        b1.setActionCommand("generar");
+        cp.add(b1, g1); 
         
         b2 = new JButton("Volver");
         g1.gridx = 0;
-        g1.gridy = 7;
+        g1.gridy = 9;
+        g1.gridwidth = 2;
         b2.addActionListener(this);
         b2.setActionCommand("volver");
-        cp.add(b2, g1); 
+        cp.add(b2, g1);
         
-        b3 = new JButton("Editar");
+        b3 = new JButton("Agregar");
         g1.gridx = 1;
-        g1.gridy = 7;
+        g1.gridy = 9;
+        g1.gridwidth = 2;
         b3.addActionListener(this);
-        b3.setActionCommand("editar");
-        cp.add(b3, g1);
-        
-        b4 = new JButton("Eliminar");
-        g1.gridx = 2;
-        g1.gridy = 7;
-        b4.addActionListener(this);
-        b4.setActionCommand("eliminar");
-        cp.add(b4, g1); 
-        
+        b3.setActionCommand("agregar");
+        cp.add(b3, g1);   
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         System.out.println("Comando: " + comando);
         
         switch(comando){
-            case "buscar":
+            case "generar":
                 break;
-            
+                
             case "volver":
                 setVisible(false);
                 break;
                 
-            case "editar":
+            case "agregar":
                 JOptionPane.showMessageDialog(null, "Operación Exitosa");
                 break;
-                
-            case "eliminar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
-                break;
+ 
         }
     }
-    
 }

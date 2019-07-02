@@ -8,7 +8,6 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -139,35 +138,35 @@ public class VAdministrador extends JFrame implements ActionListener {
                 break;
                     
             case "agregarPv":
-               // llamarVentanaAgregarPv();
+                llamarVentanaAgregarPv();
                 break;
             
             case "modificarPv":
-                //llamarVentanaModificarPv();
+                llamarVentanaModificarPv();
                 break;
                     
             case "agregarPd":
-                //llamarVentanaAgregarPd();
+                llamarVentanaAgregarPd();
                 break;
                 
             case "comprarPd":
-                //llamarVentanaComprarPd();
+                llamarVentanaComprarPd();
                 break;    
             
             case "modificarPd":
-                //llamarVentanaModificarPd();
+                llamarVentanaModificarPd();
                 break;
                 
             case "listarV":
-                //llamarVentanaListarV();
+                llamarVentanaListarV();
                 break;
             
             case "listarF":
-                //llamarVentanaListarF();
+                llamarVentanaListarF();
                 break;
                     
             case "cerrarS":
-                //llamarVentanaIniciarS();
+                llamarVentanaIniciarS();
                 break;
 
         }
@@ -178,11 +177,6 @@ public class VAdministrador extends JFrame implements ActionListener {
         vae.setVisible(true);
         
         escritorioA.add(vae);
-        try {
-	vae.setSelected(true);
-	} catch (PropertyVetoException e) {
-		e.printStackTrace();
-	}
     }
 
     public void llamarVentanaModificarE() {
@@ -190,11 +184,6 @@ public class VAdministrador extends JFrame implements ActionListener {
         vme.setVisible(true);
         
         escritorioA.add(vme);
-        try {
-	vme.setSelected(true);
-	} catch (PropertyVetoException e) {
-		e.printStackTrace();
-	}
     }
 
     public void llamarVentanaMostrarPd() {
@@ -202,9 +191,66 @@ public class VAdministrador extends JFrame implements ActionListener {
         vmp.setVisible(true);
         
         escritorioA.add(vmp);
-        try {
-	vmp.setSelected(true);
-	} catch (PropertyVetoException e) {
-		e.printStackTrace();
-	}
-}}
+    }
+
+    public void llamarVentanaAgregarPv() {
+        VAgregarProveedor vapv = new VAgregarProveedor();
+        vapv.setVisible(true);
+        
+        escritorioA.add(vapv);
+    }
+
+    public void llamarVentanaModificarPv() {
+        VModificarProveedor vmpv = new VModificarProveedor();
+        vmpv.setVisible(true);
+        
+        escritorioA.add(vmpv);
+    }
+
+    public void llamarVentanaAgregarPd() {
+        VAgregarProducto vapd = new VAgregarProducto();
+        vapd.setVisible(true);
+        
+        escritorioA.add(vapd);
+    }
+    
+    public void llamarVentanaComprarPd() {
+        VComprarProducto vcpd = new VComprarProducto();
+        vcpd.setVisible(true);
+        
+        escritorioA.add(vcpd);
+    }
+
+    public void llamarVentanaModificarPd() {
+        VModificarProducto vmpd = new VModificarProducto();
+        vmpd.setVisible(true);
+        
+        escritorioA.add(vmpd);
+    }
+
+    public void llamarVentanaListarV() {
+        VListarVentas vlv = new VListarVentas();
+        vlv.setVisible(true);
+        
+        escritorioA.add(vlv);
+    }
+
+    public void llamarVentanaListarF() {
+        
+        VListarFacturas vlf = new VListarFacturas();
+        vlf.setVisible(true);
+        
+        escritorioA.add(vlf);
+    }
+
+    public void llamarVentanaIniciarS() {
+        VIniciarSesion vI = new VIniciarSesion();
+        vI.setVisible(true);
+        
+        setVisible(false);
+    }
+    
+    
+}   
+    
+  

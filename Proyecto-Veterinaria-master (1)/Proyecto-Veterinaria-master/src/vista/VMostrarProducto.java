@@ -17,37 +17,38 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rakrad7101
  */
-public class VListarFacturas extends JInternalFrame implements ActionListener{
-    
-    public VListarFacturas(){
+public class VMostrarProducto extends JInternalFrame implements ActionListener{
+
+    public VMostrarProducto(){
         initComponentes();
-        ventanaListarFac();
+        ventanaMostrarProd();
     }
     
     public void initComponentes(){
         setSize(400,400);
-        setTitle("Listar Facturas");
-
+        setTitle("Lista de Productos");
     }
     
-    JButton b1;
+    private JButton b1;
+    private JButton b2;
     DefaultTableModel dt;
     private JTable tb1;
     private JScrollPane scr;
-    private boolean[] editable = {false,false,false};
+    private boolean[] editable = {false,false,false,false,false,false};
     
-    public void ventanaListarFac(){
+    public void ventanaMostrarProd(){
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         
         JPanel pa = new JPanel();
         pa.setLayout(new BorderLayout()); 
         
-        dt = new DefaultTableModel(new String[]{"Nº Factura", "Cliente", 
-            "Total"}, 0) {
+        dt = new DefaultTableModel(new String[]{"Código", "Nombre", 
+            "Descripción", "Categoría", "Precio", "Stock"}, 0) {
  
             Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class 
             };
  
             @Override
@@ -79,8 +80,8 @@ public class VListarFacturas extends JInternalFrame implements ActionListener{
         
         cp.add(pa, BorderLayout.CENTER);
         cp.add(pa2, BorderLayout.SOUTH);
-    }
-
+    }   
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -93,6 +94,20 @@ public class VListarFacturas extends JInternalFrame implements ActionListener{
         }
     }
     
-    
+    /*
+    Método para mostrar los datos en la tabla
+    */
+    /*public void mostrar(){
+        int n = g.listarProductosExistentes().size();
+        for(int i = 0; i < n; i++){
+            Object fila[] = new Object[4];
+            fila[0] = g.listarProductosExistentes().get(i).getCodigo();
+            fila[1] = g.listarProductosExistentes().get(i).getNombre();
+            fila[2] = g.listarProductosExistentes().get(i).getTipo();
+            fila[3] = false;
+
+            dt.addRow(fila);
+        }
+    }*/
     
 }

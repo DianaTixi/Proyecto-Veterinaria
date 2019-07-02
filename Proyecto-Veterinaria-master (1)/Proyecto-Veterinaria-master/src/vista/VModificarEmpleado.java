@@ -29,7 +29,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         setTitle("Modificar Empleados");
         setClosable(true);
         setMaximizable(true); 
-
+        
     }
     
     private JButton b1;

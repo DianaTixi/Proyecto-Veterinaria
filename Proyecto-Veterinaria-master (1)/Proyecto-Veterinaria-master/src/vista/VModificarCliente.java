@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,29 +16,24 @@ import javax.swing.JTextField;
  *
  * @author Rakrad7101
  */
-public class VModificarEmpleado extends JInternalFrame implements ActionListener{
-
-    public VModificarEmpleado(){
+public class VModificarCliente extends JInternalFrame implements ActionListener{
+    
+    public VModificarCliente(){
         initComponentes();
-        ventanaModificarEmp();
+        ventanaModificarCli();
     }
     
     public void initComponentes(){
-        setSize(400, 400);
-        setTitle("Modificar Empleados");
-        setClosable(true);
-        setMaximizable(true); 
-
+        setSize(400,400);
+        setTitle("Modificar Clientes");
     }
     
     private JButton b1;
     private JButton b2;
     private JButton b3;
     private JButton b4;
-    private JComboBox<String> cb1;
     
-    public void ventanaModificarEmp(){
-        
+    public void ventanaModificarCli(){
         Container cp = getContentPane();
         GridBagConstraints g1 = new GridBagConstraints();       
         cp.setLayout(new GridBagLayout()); 
@@ -55,10 +49,10 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         cp.add(t1, g1);
         
         b1 = new JButton("Buscar");
+        g1.gridx = 2;
+        g1.gridy = 0;
         b1.addActionListener(this);
         b1.setActionCommand("buscar");
-        g1.gridx =2;
-        g1.gridy =0;
         cp.add(b1, g1);
         
         JLabel l2 = new JLabel("Nombres:");
@@ -91,62 +85,48 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =3;
         cp.add(t4, g1);
         
-        JLabel l5 = new JLabel("Cargo:");
+        JLabel l5 = new JLabel("Correo:");
         g1.gridx =0;
         g1.gridy =4;
         cp.add(l5, g1);
         
-        cb1 = new JComboBox<>();
-            cb1.addItem("Administrador");
-            cb1.addItem("Secretaria/o");
-            cb1.addItem("Médico");
-        g1.gridx =1;
-        g1.gridy =4;
-        cp.add(cb1, g1);
-        
-        JLabel l6 = new JLabel("Correo:");
-        g1.gridx =0;
-        g1.gridy =5;
-        cp.add(l6, g1);
-        
         JTextField t5 = new JTextField(12);
         g1.gridx =1;
-        g1.gridy =5;
+        g1.gridy =4;
         cp.add(t5, g1);
         
         JLabel l7 = new JLabel("Dirección:");
         g1.gridx =0;
-        g1.gridy =6;
+        g1.gridy =5;
         cp.add(l7, g1);
         
         JTextField t6 = new JTextField(12);
         g1.gridx =1;
-        g1.gridy =6;
+        g1.gridy =5;
         cp.add(t6, g1);
         
         b2 = new JButton("Volver");
         g1.gridx = 0;
-        g1.gridy = 7;
+        g1.gridy = 6;
         b2.addActionListener(this);
         b2.setActionCommand("volver");
-        cp.add(b2, g1); 
+        cp.add(b2, g1);
         
         b3 = new JButton("Editar");
         g1.gridx = 1;
-        g1.gridy = 7;
+        g1.gridy = 6;
         b3.addActionListener(this);
         b3.setActionCommand("editar");
         cp.add(b3, g1);
         
         b4 = new JButton("Eliminar");
         g1.gridx = 2;
-        g1.gridy = 7;
+        g1.gridy = 6;
         b4.addActionListener(this);
         b4.setActionCommand("eliminar");
-        cp.add(b4, g1); 
-        
+        cp.add(b4, g1);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -169,5 +149,5 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
                 break;
         }
     }
-    
+ 
 }

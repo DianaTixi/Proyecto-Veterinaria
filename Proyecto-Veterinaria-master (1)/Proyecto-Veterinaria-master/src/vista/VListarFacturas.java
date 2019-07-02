@@ -27,7 +27,6 @@ public class VListarFacturas extends JInternalFrame implements ActionListener{
     public void initComponentes(){
         setSize(400,400);
         setTitle("Listar Facturas");
-
     }
     
     JButton b1;

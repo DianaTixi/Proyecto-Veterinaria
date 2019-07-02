@@ -24,7 +24,7 @@ public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
         initComponentes();
         ventanaAgregarEmp();
         
-    }
+ }
     
     public void initComponentes(){
         setSize(400,400);
