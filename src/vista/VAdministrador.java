@@ -8,6 +8,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -177,6 +178,11 @@ public class VAdministrador extends JFrame implements ActionListener {
         vae.setVisible(true);
         
         escritorioA.add(vae);
+        try {
+	vae.setSelected(true);
+	} catch (PropertyVetoException e) {
+		e.printStackTrace();
+	}
     }
 
     public void llamarVentanaModificarE() {
@@ -184,6 +190,11 @@ public class VAdministrador extends JFrame implements ActionListener {
         vme.setVisible(true);
         
         escritorioA.add(vme);
+        try {
+	vme.setSelected(true);
+	} catch (PropertyVetoException e) {
+		e.printStackTrace();
+	}
     }
 
     public void llamarVentanaMostrarPd() {
@@ -191,6 +202,11 @@ public class VAdministrador extends JFrame implements ActionListener {
         vmp.setVisible(true);
         
         escritorioA.add(vmp);
+        try {
+	vmp.setSelected(true);
+	} catch (PropertyVetoException e) {
+		e.printStackTrace();
+	}
     }
 
     public void llamarVentanaAgregarPv() {

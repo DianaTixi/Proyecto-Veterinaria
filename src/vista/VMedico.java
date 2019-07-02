@@ -96,6 +96,11 @@ public class VMedico extends JFrame implements ActionListener{
         vD.setVisible(true);
         
         escritorioM.add(vD);
+        try {
+	vD.setSelected(true);
+	} catch (PropertyVetoException e) {
+		e.printStackTrace();
+	}
     }
 
     private void llamarVentanaHistorialM() {
@@ -103,10 +108,10 @@ public class VMedico extends JFrame implements ActionListener{
         vH.setVisible(true);
         escritorioM.add(vH);
         try {
-			vH.setSelected(true);
-		} catch (PropertyVetoException e) {
-			e.printStackTrace();
-		}
+	vH.setSelected(true);
+	} catch (PropertyVetoException e) {
+		e.printStackTrace();
+	}
     }
 
     private void llamarVentanaCerrarS() {
