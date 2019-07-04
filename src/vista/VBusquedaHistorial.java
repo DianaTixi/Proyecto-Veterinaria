@@ -6,7 +6,6 @@
 package vista;
 
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import vista.VHistorial;
 
 /**
  *
