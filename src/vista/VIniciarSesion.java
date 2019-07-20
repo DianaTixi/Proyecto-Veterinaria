@@ -1,6 +1,20 @@
 
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorCita;
+import conexionbd.ControladorCliente;
+import conexionbd.ControladorDiagnostico;
+import conexionbd.ControladorEmpleado;
+import conexionbd.ControladorEspecie;
+import conexionbd.ControladorFacturaCabecera;
+import conexionbd.ControladorFacturaDetalle;
+import conexionbd.ControladorMascota;
+import conexionbd.ControladorProducto;
+import conexionbd.ControladorProveedor;
+import conexionbd.ControladorRaza;
+import conexionbd.ControladorRecetaCabecera;
+import conexionbd.ControladorRecetaDetalle;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,14 +33,45 @@ import javax.swing.JTextField;
  */
 public class VIniciarSesion extends JFrame implements ActionListener{
 
+    Conexion con;
+    ControladorEmpleado cem;
+    ControladorProveedor cpv;
+    ControladorProducto cpd;
+    ControladorCliente cc;
+    ControladorMascota cm;
+    ControladorEspecie ces;
+    ControladorRaza cr;
+    ControladorCita cct;
+    ControladorFacturaCabecera cfc;
+    ControladorFacturaDetalle cfd;
+    ControladorDiagnostico cd;
+    ControladorRecetaCabecera crc;
+    ControladorRecetaDetalle crd;
     
-    private JButton b1;
     String user;
     String contra;
+    int cont;
     
-    int v;
-    
-    public VIniciarSesion(){
+    public VIniciarSesion(Conexion con,ControladorEmpleado cem,ControladorProveedor cpv,
+            ControladorProducto cpd,ControladorCliente cc,ControladorMascota cm,
+            ControladorEspecie ces,ControladorRaza cr,ControladorCita cct,
+            ControladorFacturaCabecera cfc,ControladorFacturaDetalle cfd,
+            ControladorDiagnostico cd,ControladorRecetaCabecera crc,
+            ControladorRecetaDetalle crd){
+        this.con = con;
+        this.cem = cem;
+        this.cpv = cpv;
+        this.cpd = cpd;
+        this.cc = cc;
+        this.cm = cm;
+        this.ces = ces;
+        this.cr = cr;
+        this.cct = cct;
+        this.cfc = cfc;
+        this.cfd = cfd;
+        this.cd = cd;
+        this.crc = crc;
+        this.crd = crd;
         ventanaIniciar();
         initComponentes();
     }
@@ -37,7 +82,9 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    private JButton b1;
     JTextField t1;
+    JPasswordField t2;
     
     public void ventanaIniciar(){
         
@@ -62,7 +109,7 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         g1.gridy =1;
         cp.add(l2, g1);
         
-        JPasswordField t2 = new JPasswordField(10);
+        t2 = new JPasswordField(10);
         g1.gridx =1;
         g1.gridy =1;
         cp.add(t2, g1);
@@ -85,25 +132,20 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         
         switch(comando){
             case "iniciar":
-                try {
-                    user = t1.getText();
-                    v = Integer.parseInt(user);
-                    
-                    if(v == 1){
-                        llamarVentanaAdministrador();
-                        setVisible(false);
-                    }else if(v == 2){
-                        llamarVentanaSecretaria();
-                        setVisible(false);
-                    }else if(v ==3){
-                        llamarVentanaMedico();
-                        setVisible(false);
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Vuelva a ingresar los datos");
-                    }
-                    
-                } catch (NumberFormatException r) {
-                    r.printStackTrace();
+                user = t1.getText();
+                contra = t2.getText();
+                
+                if ("Administrador".equals(cem.comprobarTipo(con, user, contra))){
+                    llamarVentanaAdministrador();
+                    setVisible(false);
+                }else if("Secretaria".equals(cem.comprobarTipo(con, user, contra))){
+                    llamarVentanaSecretaria();
+                    setVisible(false);
+                }else if("Médico".equals(cem.comprobarTipo(con, user, contra))){
+                    llamarVentanaMedico();
+                    setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Vuelva a ingresar los datos");
                 }
                 break;
         }
@@ -111,17 +153,17 @@ public class VIniciarSesion extends JFrame implements ActionListener{
     }
     
     public void llamarVentanaAdministrador(){
-        VAdministrador vA = new VAdministrador();
+        VAdministrador vA = new VAdministrador(con,cem,cpv,cpd,cc,cfc,cfd);
         vA.setVisible(true); 
     }
     
     public void llamarVentanaSecretaria(){
-        VSecretaria vS = new VSecretaria();
+        VSecretaria vS = new VSecretaria(con,cpd,cc,cm,ces,cr,cct,cfc,cfd,cd,crc,crd);
         vS.setVisible(true); 
     }
     
     public void llamarVentanaMedico(){
-        VMedico vM = new VMedico();
+        VMedico vM = new VMedico(con,cpd,cc,cm,ces,cr,cct,cfc,cfd,cd,crc,crd);
         vM.setVisible(true); 
     }
 }

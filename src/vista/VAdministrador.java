@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorCliente;
+import conexionbd.ControladorEmpleado;
+import conexionbd.ControladorFacturaCabecera;
+import conexionbd.ControladorFacturaDetalle;
+import conexionbd.ControladorProducto;
+import conexionbd.ControladorProveedor;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -20,12 +22,27 @@ import javax.swing.JMenuItem;
  * @author Rakrad7101
  */
 public class VAdministrador extends JFrame implements ActionListener {
-
     
     private JDesktopPane escritorioA;
+    Conexion con;
+    ControladorEmpleado cem;
+    ControladorProveedor cpv;
+    ControladorProducto cpd;
+    ControladorCliente cc;
+    ControladorFacturaCabecera cfc;
+    ControladorFacturaDetalle cfd;
     
-    public VAdministrador(){
+    public VAdministrador(Conexion con,ControladorEmpleado cem,ControladorProveedor cpv,
+            ControladorProducto cpd,ControladorCliente cc,ControladorFacturaCabecera cfc,
+            ControladorFacturaDetalle cfd){
         escritorioA = new JDesktopPane();
+        this.con = con;
+        this.cem = cem;
+        this.cpv = cpv;
+        this.cpd = cpd;
+        this.cc = cc;
+        this.cfc = cfc;
+        this.cfd = cfd;
         ventanaAdministrador();
         initComponentes();
     }
@@ -61,10 +78,6 @@ public class VAdministrador extends JFrame implements ActionListener {
         //Agrega opciones a la barra de menu
         JMenu m2 = new JMenu("Productos");
             //Ingresa items en la opcion
-            JMenuItem i3 = new JMenuItem("Mostrar Productos");
-            i3.addActionListener(this);
-            i3.setActionCommand("mostrarPd");
-            m2.add(i3);
             
             JMenuItem i4 = new JMenuItem("Agregar Proveedores");
             i4.addActionListener(this);
@@ -94,8 +107,18 @@ public class VAdministrador extends JFrame implements ActionListener {
         barra.add(m2);
         
         //Añade la opcion de prestamo a la barra de menu
-        JMenu m3 = new JMenu("Ventas");
+        JMenu m3 = new JMenu("Información");
             //Ingresa items en la opcion
+            JMenuItem i12 = new JMenuItem("Listar Empleados");
+            i12.addActionListener(this);
+            i12.setActionCommand("mostrarEm");
+            m3.add(i12);
+            
+            JMenuItem i3 = new JMenuItem("Listar Productos");
+            i3.addActionListener(this);
+            i3.setActionCommand("mostrarPd");
+            m3.add(i3);
+            
             JMenuItem i8 = new JMenuItem("Listar Ventas");
             i8.addActionListener(this);
             i8.setActionCommand("listarV");
@@ -137,7 +160,11 @@ public class VAdministrador extends JFrame implements ActionListener {
             case "mostrarPd":
                 llamarVentanaMostrarPd();
                 break;
-                    
+            
+            case "mostrarEm":
+                llamarVentanaMostrarEm();
+                break;    
+                
             case "agregarPv":
                 llamarVentanaAgregarPv();
                 break;
@@ -174,14 +201,14 @@ public class VAdministrador extends JFrame implements ActionListener {
     }
     
     public void llamarVentanaAgregarE(){
-        VAgregarEmpleado vae = new VAgregarEmpleado();
+        VAgregarEmpleado vae = new VAgregarEmpleado(con,cem);
         vae.setVisible(true);
         
         escritorioA.add(vae);
     }
 
     public void llamarVentanaModificarE() {
-        VModificarEmpleado vme = new VModificarEmpleado();
+        VModificarEmpleado vme = new VModificarEmpleado(con,cem);
         vme.setVisible(true);
         
         escritorioA.add(vme);
@@ -192,6 +219,11 @@ public class VAdministrador extends JFrame implements ActionListener {
         vmp.setVisible(true);
         
         escritorioA.add(vmp);
+    }
+    
+    public void llamarVentanaMostrarEm() {
+        
+        escritorioA.add(vle);
     }
 
     public void llamarVentanaAgregarPv() {
@@ -245,7 +277,8 @@ public class VAdministrador extends JFrame implements ActionListener {
     }
 
     public void llamarVentanaIniciarS() {
-        VIniciarSesion vI = new VIniciarSesion();
+        VIniciarSesion vI = new VIniciarSesion(con,cem,cpv,cpd,cc,null,null,null,
+                null,cfc,cfd,null,null,null);
         vI.setVisible(true);
         
         setVisible(false);

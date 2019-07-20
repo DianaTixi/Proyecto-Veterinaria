@@ -1,6 +1,18 @@
 
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorCita;
+import conexionbd.ControladorCliente;
+import conexionbd.ControladorDiagnostico;
+import conexionbd.ControladorEspecie;
+import conexionbd.ControladorFacturaCabecera;
+import conexionbd.ControladorFacturaDetalle;
+import conexionbd.ControladorMascota;
+import conexionbd.ControladorProducto;
+import conexionbd.ControladorRaza;
+import conexionbd.ControladorRecetaCabecera;
+import conexionbd.ControladorRecetaDetalle;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +29,36 @@ import javax.swing.JMenuItem;
 public class VSecretaria extends JFrame implements ActionListener{
     
     private JDesktopPane escritorioS;
+    Conexion con;
+    ControladorProducto cpd;
+    ControladorCliente cc;
+    ControladorMascota cm;
+    ControladorEspecie ces;
+    ControladorRaza cr;
+    ControladorCita cct;
+    ControladorFacturaCabecera cfc;
+    ControladorFacturaDetalle cfd;
+    ControladorDiagnostico cd;
+    ControladorRecetaCabecera crc;
+    ControladorRecetaDetalle crd;
     
-    public VSecretaria(){
+    public VSecretaria(Conexion con,ControladorProducto cpd,ControladorCliente cc,
+            ControladorMascota cm,ControladorEspecie ces,ControladorRaza cr,
+            ControladorCita cct,ControladorFacturaCabecera cfc,ControladorFacturaDetalle cfd,
+            ControladorDiagnostico cd,ControladorRecetaCabecera crc,
+            ControladorRecetaDetalle crd){
+        this.con = con;
+        this.cpd = cpd;
+        this.cc = cc;
+        this.cm = cm;
+        this.ces = ces;
+        this.cr = cr;
+        this.cct = cct;
+        this.cfc = cfc;
+        this.cfd = cfd;
+        this.cd = cd;
+        this.crc = crc;
+        this.crd = crd;
         escritorioS = new JDesktopPane();
         initComponentes();
         ventanaSecretaria();
@@ -207,7 +247,8 @@ public class VSecretaria extends JFrame implements ActionListener{
     }
     
     public void llamarVentanaIniciarS() {
-        VIniciarSesion vI = new VIniciarSesion();
+        VIniciarSesion vI = new VIniciarSesion(con,null,null,cpd,cc,cm,ces,cr,cct,
+                cfc,cfd,cd,crc,crd);
         vI.setVisible(true);
         
         setVisible(false);
