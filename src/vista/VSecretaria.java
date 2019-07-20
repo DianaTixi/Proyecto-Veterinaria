@@ -44,12 +44,13 @@ public class VSecretaria extends JFrame implements ActionListener{
     ControladorRecetaCabecera crc;
     ControladorRecetaDetalle crd;
     
-    public VSecretaria(Conexion con,ControladorProducto cpd,ControladorCliente cc,
+    public VSecretaria(Conexion con,ControladorCaracter cca,ControladorProducto cpd,ControladorCliente cc,
             ControladorMascota cm,ControladorEspecie ces,ControladorRaza cr,
             ControladorCita cct,ControladorFacturaCabecera cfc,ControladorFacturaDetalle cfd,
             ControladorDiagnostico cd,ControladorRecetaCabecera crc,
             ControladorRecetaDetalle crd){
         this.con = con;
+        this.cca = cca;
         this.cpd = cpd;
         this.cc = cc;
         this.cm = cm;
@@ -250,7 +251,6 @@ public class VSecretaria extends JFrame implements ActionListener{
     
     public void llamarVentanaIniciarS() {
         VIniciarSesion vI = new VIniciarSesion(con,cca,null,null,cpd,cc,cm,ces,cr,cct,
-        VIniciarSesion vI = new VIniciarSesion(con,null,null,cpd,cc,cm,ces,cr,cct,
                 cfc,cfd,cd,crc,crd);
         vI.setVisible(true);
         

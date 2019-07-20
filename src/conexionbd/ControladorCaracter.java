@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package conexionbd;
 
 /**
@@ -12,7 +8,7 @@ package conexionbd;
 public class ControladorCaracter {
     
     
-    public boolean verificadCedula(String ced){
+    public boolean verificarCedula(String ced){
         boolean k = true;
         //try y catch para el caso de que la longitud sea menor a 10 digitos
         try {
@@ -57,13 +53,13 @@ public class ControladorCaracter {
     }
     
     
-    public boolean comprovarCaracteres(String palabra) throws Throwable{
+    public boolean comprobarCaracteres(String palabra) throws Throwable{
         ControladorCaracter controlador = new ControladorCaracter();
         
         for(int i=0; i<palabra.length();i++){
             String letra = palabra.charAt(i)+"";
             try {
-                if(controlador.comprovacionInterna(letra)==true){
+                if(controlador.comprobacionInterna(letra)==true){
                     return false;
                 }
             } catch (Throwable e) {
@@ -74,7 +70,7 @@ public class ControladorCaracter {
         
     }
     
-    public boolean comprovacionInterna(String letra) throws Throwable{
+    public boolean comprobacionInterna(String letra) throws Throwable{
         int v;
         try {
             

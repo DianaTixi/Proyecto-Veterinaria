@@ -2,9 +2,7 @@
 package vista;
 
 import conexionbd.Conexion;
-import conexionbd.ControladorCaracter;
 import conexionbd.ControladorProducto;
-import conexionbd.ControladorProveedor;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

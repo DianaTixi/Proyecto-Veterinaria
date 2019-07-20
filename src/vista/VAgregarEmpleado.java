@@ -2,10 +2,7 @@
 package vista;
 
 import conexionbd.Conexion;
-<<<<<<< HEAD
-=======
 import conexionbd.ControladorCaracter;
->>>>>>> origin/master
 import conexionbd.ControladorEmpleado;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -30,19 +27,12 @@ import modelo.Empleado;
 public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
     
     Conexion con;
-<<<<<<< HEAD
-    ControladorEmpleado cem;
-    
-    public VAgregarEmpleado(Conexion con,ControladorEmpleado cem){
-        this.con = con;
-=======
     ControladorCaracter cca;
     ControladorEmpleado cem;
     
     public VAgregarEmpleado(Conexion con,ControladorCaracter cca,ControladorEmpleado cem){
         this.con = con;
         this.cca = cca;
->>>>>>> origin/master
         this.cem = cem;
         initComponentes();
         ventanaAgregarEmp();  
@@ -202,36 +192,9 @@ public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
                 }
                 
                 break;
- 
         }
     }
     
-<<<<<<< HEAD
-    private void agregarEmp(){
-        String ced = t1.getText();
-        String nom = t2.getText();
-        String ape = t3.getText();
-        String tel = t4.getText();
-        String car = cb1.getSelectedItem().toString();
-        String ema = t5.getText();
-        String dir = t6.getText();
-        String user = t7.getText();
-        String cont = t8.getText();
-        
-        Empleado emp = new Empleado();
-        emp.setPersonaCedula(ced);
-        emp.setPersonaNombre(nom);
-        emp.setPersonaApellido(ape);
-        emp.setPersonaTelefono(tel);
-        emp.setEmpleadoPermiso(car);
-        emp.setPersonaEmail(ema);
-        emp.setPersonaDireccion(dir);
-        emp.setEmpleadoUsername(user);
-        emp.setEmpleadoContrasena(cont);
-        
-        cem.empAgregar(con, emp);
-        
-=======
     String cedula;
     String nombre;
     String apellido;
@@ -291,6 +254,5 @@ public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
         }
         
         return v;
->>>>>>> origin/master
     }
 }

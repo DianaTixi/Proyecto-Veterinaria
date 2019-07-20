@@ -2,10 +2,7 @@
 package vista;
 
 import conexionbd.Conexion;
-<<<<<<< HEAD
-=======
 import conexionbd.ControladorCaracter;
->>>>>>> origin/master
 import conexionbd.ControladorCliente;
 import conexionbd.ControladorEmpleado;
 import conexionbd.ControladorFacturaCabecera;
@@ -29,10 +26,7 @@ public class VAdministrador extends JFrame implements ActionListener {
     
     private JDesktopPane escritorioA;
     Conexion con;
-<<<<<<< HEAD
-=======
     ControladorCaracter cca;
->>>>>>> origin/master
     ControladorEmpleado cem;
     ControladorProveedor cpv;
     ControladorProducto cpd;
@@ -40,15 +34,9 @@ public class VAdministrador extends JFrame implements ActionListener {
     ControladorFacturaCabecera cfc;
     ControladorFacturaDetalle cfd;
     
-<<<<<<< HEAD
-    public VAdministrador(Conexion con,ControladorEmpleado cem,ControladorProveedor cpv,
+    public VAdministrador(Conexion con,ControladorCaracter cca,ControladorEmpleado cem,ControladorProveedor cpv,
             ControladorProducto cpd,ControladorCliente cc,ControladorFacturaCabecera cfc,
             ControladorFacturaDetalle cfd){
-=======
-    public VAdministrador(Conexion con,ControladorCaracter cca,ControladorEmpleado cem,
-            ControladorProveedor cpv,ControladorProducto cpd,ControladorCliente cc,
-            ControladorFacturaCabecera cfc,ControladorFacturaDetalle cfd){
->>>>>>> origin/master
         escritorioA = new JDesktopPane();
         this.con = con;
         this.cem = cem;
@@ -170,17 +158,6 @@ public class VAdministrador extends JFrame implements ActionListener {
             case "modificarE":
                 llamarVentanaModificarE();
                 break;
-<<<<<<< HEAD
-            
-            case "mostrarPd":
-                llamarVentanaMostrarPd();
-                break;
-            
-            case "mostrarEm":
-                llamarVentanaMostrarEm();
-                break;    
-=======
->>>>>>> origin/master
                 
             case "agregarPv":
                 llamarVentanaAgregarPv();
@@ -226,28 +203,19 @@ public class VAdministrador extends JFrame implements ActionListener {
     }
     
     public void llamarVentanaAgregarE(){
-<<<<<<< HEAD
-        VAgregarEmpleado vae = new VAgregarEmpleado(con,cem);
-=======
         VAgregarEmpleado vae = new VAgregarEmpleado(con,cca,cem);
->>>>>>> origin/master
         vae.setVisible(true);
         
         escritorioA.add(vae);
     }
 
     public void llamarVentanaModificarE() {
-<<<<<<< HEAD
-        VModificarEmpleado vme = new VModificarEmpleado(con,cem);
-=======
         VModificarEmpleado vme = new VModificarEmpleado(con,cca,cem);
->>>>>>> origin/master
         vme.setVisible(true);
         
         escritorioA.add(vme);
     }
 
-<<<<<<< HEAD
     public void llamarVentanaMostrarPd() {
         VMostrarProducto vmp = new VMostrarProducto();
         vmp.setVisible(true);
@@ -255,13 +223,6 @@ public class VAdministrador extends JFrame implements ActionListener {
         escritorioA.add(vmp);
     }
     
-    public void llamarVentanaMostrarEm() {
-        
-        escritorioA.add(vle);
-    }
-
-=======
->>>>>>> origin/master
     public void llamarVentanaAgregarPv() {
         VAgregarProveedor vapv = new VAgregarProveedor(con,cpv);
         vapv.setVisible(true);
@@ -296,13 +257,6 @@ public class VAdministrador extends JFrame implements ActionListener {
         
         escritorioA.add(vmpd);
     }
-       
-    public void llamarVentanaMostrarPd() {
-        VMostrarProducto vmp = new VMostrarProducto();
-        vmp.setVisible(true);
-        
-        escritorioA.add(vmp);
-    }
     
     public void llamarVentanaMostrarEm() {
         VListarEmpleado vle = new VListarEmpleado();
@@ -327,11 +281,7 @@ public class VAdministrador extends JFrame implements ActionListener {
     }
 
     public void llamarVentanaIniciarS() {
-<<<<<<< HEAD
-        VIniciarSesion vI = new VIniciarSesion(con,cem,cpv,cpd,cc,null,null,null,
-=======
         VIniciarSesion vI = new VIniciarSesion(con,cca,cem,cpv,cpd,cc,null,null,null,
->>>>>>> origin/master
                 null,cfc,cfd,null,null,null);
         vI.setVisible(true);
         
