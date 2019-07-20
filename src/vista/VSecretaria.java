@@ -2,6 +2,7 @@
 package vista;
 
 import conexionbd.Conexion;
+import conexionbd.ControladorCaracter;
 import conexionbd.ControladorCita;
 import conexionbd.ControladorCliente;
 import conexionbd.ControladorDiagnostico;
@@ -30,6 +31,7 @@ public class VSecretaria extends JFrame implements ActionListener{
     
     private JDesktopPane escritorioS;
     Conexion con;
+    ControladorCaracter cca;
     ControladorProducto cpd;
     ControladorCliente cc;
     ControladorMascota cm;
@@ -247,6 +249,7 @@ public class VSecretaria extends JFrame implements ActionListener{
     }
     
     public void llamarVentanaIniciarS() {
+        VIniciarSesion vI = new VIniciarSesion(con,cca,null,null,cpd,cc,cm,ces,cr,cct,
         VIniciarSesion vI = new VIniciarSesion(con,null,null,cpd,cc,cm,ces,cr,cct,
                 cfc,cfd,cd,crc,crd);
         vI.setVisible(true);

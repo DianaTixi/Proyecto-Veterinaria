@@ -2,6 +2,10 @@
 package vista;
 
 import conexionbd.Conexion;
+<<<<<<< HEAD
+=======
+import conexionbd.ControladorCaracter;
+>>>>>>> origin/master
 import conexionbd.ControladorCita;
 import conexionbd.ControladorCliente;
 import conexionbd.ControladorDiagnostico;
@@ -34,6 +38,10 @@ import javax.swing.JTextField;
 public class VIniciarSesion extends JFrame implements ActionListener{
 
     Conexion con;
+<<<<<<< HEAD
+=======
+    ControladorCaracter cca;
+>>>>>>> origin/master
     ControladorEmpleado cem;
     ControladorProveedor cpv;
     ControladorProducto cpd;
@@ -52,6 +60,7 @@ public class VIniciarSesion extends JFrame implements ActionListener{
     String contra;
     int cont;
     
+<<<<<<< HEAD
     public VIniciarSesion(Conexion con,ControladorEmpleado cem,ControladorProveedor cpv,
             ControladorProducto cpd,ControladorCliente cc,ControladorMascota cm,
             ControladorEspecie ces,ControladorRaza cr,ControladorCita cct,
@@ -59,6 +68,16 @@ public class VIniciarSesion extends JFrame implements ActionListener{
             ControladorDiagnostico cd,ControladorRecetaCabecera crc,
             ControladorRecetaDetalle crd){
         this.con = con;
+=======
+    public VIniciarSesion(Conexion con,ControladorCaracter cca,ControladorEmpleado cem,
+            ControladorProveedor cpv,ControladorProducto cpd,ControladorCliente cc,
+            ControladorMascota cm,ControladorEspecie ces,ControladorRaza cr,ControladorCita cct,
+            ControladorFacturaCabecera cfc,ControladorFacturaDetalle cfd,
+            ControladorDiagnostico cd,ControladorRecetaCabecera crc,
+            ControladorRecetaDetalle crd){
+        this.con = con;
+        this.cca = cca;
+>>>>>>> origin/master
         this.cem = cem;
         this.cpv = cpv;
         this.cpd = cpd;
@@ -132,6 +151,7 @@ public class VIniciarSesion extends JFrame implements ActionListener{
         
         switch(comando){
             case "iniciar":
+<<<<<<< HEAD
                 user = t1.getText();
                 contra = t2.getText();
                 
@@ -146,6 +166,36 @@ public class VIniciarSesion extends JFrame implements ActionListener{
                     setVisible(false);
                 }else{
                     JOptionPane.showMessageDialog(null, "Vuelva a ingresar los datos");
+=======
+                /*user = t1.getText();
+                contra = t2.getText();
+                
+                if ("Administrador".equals(cem.comprobarTipo(con, user, contra))){
+                    llamarVentanaAdministrador();
+                    setVisible(false);
+                }else if("Secretaria".equals(cem.comprobarTipo(con, user, contra))){
+                    llamarVentanaSecretaria();
+                    setVisible(false);
+                }else if("Médico".equals(cem.comprobarTipo(con, user, contra))){
+                    llamarVentanaMedico();
+                    setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Vuelva a ingresar los datos");
+                }
+                */
+                user = t1.getText();
+                if(user == "1"){
+                    llamarVentanaAdministrador();
+                    setVisible(false);
+                }
+                if(user == "2"){
+                    llamarVentanaSecretaria();
+                    setVisible(false);
+                }
+                if(user == "3"){
+                    llamarVentanaMedico();
+                    setVisible(false);
+>>>>>>> origin/master
                 }
                 break;
         }
@@ -153,17 +203,29 @@ public class VIniciarSesion extends JFrame implements ActionListener{
     }
     
     public void llamarVentanaAdministrador(){
+<<<<<<< HEAD
         VAdministrador vA = new VAdministrador(con,cem,cpv,cpd,cc,cfc,cfd);
+=======
+        VAdministrador vA = new VAdministrador(con,cca,cem,cpv,cpd,cc,cfc,cfd);
+>>>>>>> origin/master
         vA.setVisible(true); 
     }
     
     public void llamarVentanaSecretaria(){
+<<<<<<< HEAD
         VSecretaria vS = new VSecretaria(con,cpd,cc,cm,ces,cr,cct,cfc,cfd,cd,crc,crd);
+=======
+        VSecretaria vS = new VSecretaria(con,cca,cpd,cc,cm,ces,cr,cct,cfc,cfd,cd,crc,crd);
+>>>>>>> origin/master
         vS.setVisible(true); 
     }
     
     public void llamarVentanaMedico(){
+<<<<<<< HEAD
         VMedico vM = new VMedico(con,cpd,cc,cm,ces,cr,cct,cfc,cfd,cd,crc,crd);
+=======
+        VMedico vM = new VMedico(con,cca,cpd,cc,cm,ces,cr,cct,cfc,cfd,cd,crc,crd);
+>>>>>>> origin/master
         vM.setVisible(true); 
     }
 }

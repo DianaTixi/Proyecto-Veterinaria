@@ -2,12 +2,18 @@
 package vista;
 
 import conexionbd.Conexion;
+<<<<<<< HEAD
+=======
+import conexionbd.ControladorCaracter;
+>>>>>>> origin/master
 import conexionbd.ControladorEmpleado;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
@@ -24,10 +30,19 @@ import modelo.Empleado;
 public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
     
     Conexion con;
+<<<<<<< HEAD
     ControladorEmpleado cem;
     
     public VAgregarEmpleado(Conexion con,ControladorEmpleado cem){
         this.con = con;
+=======
+    ControladorCaracter cca;
+    ControladorEmpleado cem;
+    
+    public VAgregarEmpleado(Conexion con,ControladorCaracter cca,ControladorEmpleado cem){
+        this.con = con;
+        this.cca = cca;
+>>>>>>> origin/master
         this.cem = cem;
         initComponentes();
         ventanaAgregarEmp();  
@@ -177,12 +192,21 @@ public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
                 break;
                 
             case "agregar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                if(comprobarCampos() == true){
+                    if(agregarEmp() == true){
+                        JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error","Revise los campos",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                
                 break;
  
         }
     }
     
+<<<<<<< HEAD
     private void agregarEmp(){
         String ced = t1.getText();
         String nom = t2.getText();
@@ -207,5 +231,66 @@ public class VAgregarEmpleado extends JInternalFrame implements ActionListener{
         
         cem.empAgregar(con, emp);
         
+=======
+    String cedula;
+    String nombre;
+    String apellido;
+    String telefono;
+    String cargo;
+    String email;
+    String direccion;
+    String usuario;
+    String contrasena;
+    Boolean v;
+    
+    public boolean comprobarCampos(){
+        v = false;
+        cedula= t1.getText();
+        nombre = t2.getText();
+        apellido = t3.getText();
+        
+        if(cca.verificarCedula(cedula) == true){
+            try {
+                if(cca.comprobarCaracteres(nombre) == true
+                        && cca.comprobarCaracteres(apellido) == true){
+                    v = true;
+                }
+            } catch (Throwable ex) {
+                Logger.getLogger(VAgregarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return v;
+    }
+    
+    private boolean agregarEmp(){
+        v = false;
+        cedula= t1.getText();
+        nombre = t2.getText();
+        apellido = t3.getText();
+        telefono = t4.getText();
+        cargo = cb1.getSelectedItem().toString();
+        email = t5.getText();
+        direccion = t6.getText();
+        usuario = t7.getText();
+        contrasena = t8.getText();
+        
+        Empleado emp = new Empleado();
+        emp.setPersonaCedula(cedula);
+        emp.setPersonaNombre(nombre);
+        emp.setPersonaApellido(apellido);
+        emp.setPersonaTelefono(telefono);
+        emp.setEmpleadoPermiso(cargo);
+        emp.setPersonaEmail(email);
+        emp.setPersonaDireccion(direccion);
+        emp.setEmpleadoUsername(usuario);
+        emp.setEmpleadoContrasena(contrasena);
+        
+        if(cem.empAgregar(con, emp)==true){
+            v = true;
+        }
+        
+        return v;
+>>>>>>> origin/master
     }
 }

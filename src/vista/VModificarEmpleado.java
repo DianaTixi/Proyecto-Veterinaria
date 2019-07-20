@@ -1,17 +1,23 @@
 
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorCaracter;
+import conexionbd.ControladorEmpleado;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import modelo.Empleado;
 
 /**
  *
@@ -19,7 +25,14 @@ import javax.swing.JTextField;
  */
 public class VModificarEmpleado extends JInternalFrame implements ActionListener{
 
-    public VModificarEmpleado(){
+    Conexion con;
+    ControladorCaracter cca;
+    ControladorEmpleado cem;
+    
+    public VModificarEmpleado(Conexion con,ControladorCaracter cca,ControladorEmpleado cem){
+        this.con = con;
+        this.cca = cca;
+        this.cem = cem;
         initComponentes();
         ventanaModificarEmp();
     }
@@ -36,6 +49,12 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
     private JButton b2;
     private JButton b3;
     private JButton b4;
+    private JTextField t1;
+    private JTextField t2;
+    private JTextField t3;
+    private JTextField t4;
+    private JTextField t5;
+    private JTextField t6;
     private JComboBox<String> cb1;
     
     public void ventanaModificarEmp(){
@@ -49,7 +68,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =0;
         cp.add(l1, g1);
         
-        JTextField t1 = new JTextField(12);
+        t1 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =0;
         cp.add(t1, g1);
@@ -66,7 +85,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =1;
         cp.add(l2, g1);
         
-        JTextField t2 = new JTextField(12);
+        t2 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =1;
         cp.add(t2, g1);
@@ -76,7 +95,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =2;
         cp.add(l3, g1);
         
-        JTextField t3 = new JTextField(12);
+        t3 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =2;
         cp.add(t3, g1);
@@ -86,7 +105,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =3;
         cp.add(l4, g1);
         
-        JTextField t4 = new JTextField(12);
+        t4 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =3;
         cp.add(t4, g1);
@@ -109,7 +128,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =5;
         cp.add(l6, g1);
         
-        JTextField t5 = new JTextField(12);
+        t5 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =5;
         cp.add(t5, g1);
@@ -119,7 +138,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         g1.gridy =6;
         cp.add(l7, g1);
         
-        JTextField t6 = new JTextField(12);
+        t6 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =6;
         cp.add(t6, g1);
@@ -154,6 +173,7 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
         
         switch(comando){
             case "buscar":
+                buscarEmpleado();
                 break;
             
             case "volver":
@@ -161,13 +181,124 @@ public class VModificarEmpleado extends JInternalFrame implements ActionListener
                 break;
                 
             case "editar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                editarEmpleado();
                 break;
                 
             case "eliminar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                eliminarEmpleado();
                 break;
         }
     }
     
+    String cedula;
+    String nombre;
+    String apellido;
+    String telefono;
+    String cargo;
+    String email;
+    String direccion;
+    Boolean v;
+    
+    public boolean comprobarCampos(){
+        v = false;
+        cedula= t1.getText();
+        nombre = t2.getText();
+        apellido = t3.getText();
+        
+        if(cca.verificarCedula(cedula) == true){
+            try {
+                if(cca.comprobarCaracteres(nombre) == true
+                        && cca.comprobarCaracteres(apellido) == true){
+                    v = true;
+                }
+            } catch (Throwable ex) {
+                Logger.getLogger(VAgregarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return v;
+    }
+    
+    public void buscarEmpleado(){
+        cedula = t1.getText();
+        
+        try {
+            if(cca.verificarCedula(cedula) == true){
+                if(cem.empBuscar(con, cedula).getPersonaCedula().equals(cedula)){
+                    nombre = cem.empBuscar(con, cedula).getPersonaNombre();
+                    t2.setText(nombre);
+
+                    apellido = cem.empBuscar(con, cedula).getPersonaApellido();
+                    t3.setText(apellido);
+
+                    telefono = cem.empBuscar(con, cedula).getPersonaTelefono();
+                    t4.setText(telefono);
+
+                    cargo = cem.empBuscar(con, cedula).getEmpleadoPermiso();
+                    cb1.setSelectedItem(cargo);
+
+                    email = cem.empBuscar(con, cedula).getPersonaEmail();
+                    t5.setText(email);
+
+                    direccion = cem.empBuscar(con, cedula).getPersonaDireccion();
+                    t6.setText(direccion);  
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error","El empleado no"
+                            + " existe",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Verifique la cédula",
+                    JOptionPane.ERROR_MESSAGE);        
+        }
+    }
+    
+    public void editarEmpleado(){
+        nombre = t2.getText();
+        apellido = t3.getText();
+        telefono = t4.getText();
+        cargo = cb1.getSelectedItem().toString();
+        email = t5.getText();
+        direccion = t6.getText();
+        
+        Empleado emp = new Empleado();
+        emp.setPersonaNombre(nombre);
+        emp.setPersonaApellido(apellido);
+        emp.setPersonaTelefono(telefono);
+        emp.setEmpleadoPermiso(cargo);
+        emp.setPersonaEmail(email);
+        emp.setPersonaDireccion(direccion);
+        
+        int res = JOptionPane.showConfirmDialog(null,"Desea Confirmar la acción?",
+                "Alerta!",JOptionPane.QUESTION_MESSAGE,JOptionPane.YES_NO_OPTION);
+        
+        if(res == 0){
+            if(cem.empEditar(con, emp) == true){
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error","No se pudo completar "
+                        + "la operación",JOptionPane.ERROR_MESSAGE); 
+            }
+        }else{
+            
+        }
+    }
+    
+    public void eliminarEmpleado(){
+        cedula = t1.getText();
+        
+        int res = JOptionPane.showConfirmDialog(null,"Desea Confirmar la acción?",
+                "Alerta!",JOptionPane.QUESTION_MESSAGE,JOptionPane.YES_NO_OPTION);
+        
+        if(res == 0){
+            if(cem.eliminarEmpleado(con, cedula) == true){
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error","No se pudo completar "
+                        + "la operación",JOptionPane.ERROR_MESSAGE); 
+            }
+        }else{
+            
+        }
+    }
 }

@@ -1,6 +1,9 @@
 
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorCaracter;
+import conexionbd.ControladorProveedor;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +14,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import modelo.Proveedor;
 
 /**
  *
@@ -18,7 +22,12 @@ import javax.swing.JTextField;
  */
 public class VAgregarProveedor extends JInternalFrame implements ActionListener{
     
-    public VAgregarProveedor(){
+    Conexion con;
+    ControladorProveedor cpv;
+    
+    public VAgregarProveedor(Conexion con,ControladorProveedor cpv){
+        this.con = con;
+        this.cpv = cpv;
         initComponentes();
         ventanaAgregarProv();
     }
@@ -32,6 +41,10 @@ public class VAgregarProveedor extends JInternalFrame implements ActionListener{
     
     private JButton b1;
     private JButton b2;
+    private JTextField t1;
+    private JTextField t2;
+    private JTextField t3;
+    private JTextField t4;
     
     public void ventanaAgregarProv(){
         Container cp = getContentPane();
@@ -43,7 +56,7 @@ public class VAgregarProveedor extends JInternalFrame implements ActionListener{
         g1.gridy =0;
         cp.add(l1, g1);
         
-        JTextField t1 = new JTextField(12);
+        t1 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =0;
         cp.add(t1, g1);
@@ -53,7 +66,7 @@ public class VAgregarProveedor extends JInternalFrame implements ActionListener{
         g1.gridy =1;
         cp.add(l2, g1);
         
-        JTextField t2 = new JTextField(12);
+        t2 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =1;
         cp.add(t2, g1);
@@ -63,7 +76,7 @@ public class VAgregarProveedor extends JInternalFrame implements ActionListener{
         g1.gridy =2;
         cp.add(l3, g1);
         
-        JTextField t3 = new JTextField(12);
+        t3 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =2;
         cp.add(t3, g1);
@@ -73,7 +86,7 @@ public class VAgregarProveedor extends JInternalFrame implements ActionListener{
         g1.gridy =3;
         cp.add(l4, g1);
         
-        JTextField t4 = new JTextField(12);
+        t4 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =3;
         cp.add(t4, g1);
@@ -104,9 +117,37 @@ public class VAgregarProveedor extends JInternalFrame implements ActionListener{
                 break;
                 
             case "agregar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                if(agregarProveedor() == true){
+                    JOptionPane.showMessageDialog(null, "Operación Exitos");
+                }
                 break;
  
         }
+    }
+    
+    String ruc;
+    String razonS;
+    String email;
+    String direccion;
+    Boolean v;
+    
+    public boolean agregarProveedor(){
+        v = false;
+        ruc = t1.getText();
+        razonS = t2.getText();
+        email = t3.getText();
+        direccion = t4.getText();
+        
+        Proveedor prov = new Proveedor();
+        prov.setProveedorRuc(ruc);
+        prov.setProveedorRazonSocial(razonS);
+        prov.setProveedorEmail(email);
+        prov.setProveedorDireccion(direccion);
+        
+        if(cpv.pvdAgregar(con, prov)==true){
+            v = true;
+        }
+        
+        return v;
     }
 }

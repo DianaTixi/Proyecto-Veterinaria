@@ -1,17 +1,20 @@
 
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorCaracter;
+import conexionbd.ControladorProveedor;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import modelo.Proveedor;
 
 /**
  *
@@ -19,7 +22,14 @@ import javax.swing.JTextField;
  */
 public class VModificarProveedor extends JInternalFrame implements ActionListener{
     
-    public VModificarProveedor(){
+    Conexion con;
+    ControladorCaracter cca;
+    ControladorProveedor cpv;
+    
+    public VModificarProveedor(Conexion con,ControladorCaracter cca,ControladorProveedor cpv){
+        this.con = con;
+        this.cca = cca;
+        this.cpv = cpv;
         initComponentes();
         ventanaModificarProv();
     }
@@ -33,6 +43,10 @@ public class VModificarProveedor extends JInternalFrame implements ActionListene
     private JButton b2;
     private JButton b3;
     private JButton b4;
+    private JTextField t1;
+    private JTextField t2;
+    private JTextField t3;
+    private JTextField t4;
     
     public void ventanaModificarProv(){
         
@@ -45,7 +59,7 @@ public class VModificarProveedor extends JInternalFrame implements ActionListene
         g1.gridy =0;
         cp.add(l1, g1);
         
-        JTextField t1 = new JTextField(12);
+        t1 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =0;
         cp.add(t1, g1);
@@ -62,7 +76,7 @@ public class VModificarProveedor extends JInternalFrame implements ActionListene
         g1.gridy =1;
         cp.add(l2, g1);
         
-        JTextField t2 = new JTextField(12);
+        t2 = new JTextField(12);
         g1.gridx =1;
         g1.gridy =1;
         cp.add(t2, g1);
@@ -117,6 +131,7 @@ public class VModificarProveedor extends JInternalFrame implements ActionListene
         
         switch(comando){
             case "buscar":
+                buscarProveedor();
                 break;
             
             case "volver":
@@ -124,13 +139,83 @@ public class VModificarProveedor extends JInternalFrame implements ActionListene
                 break;
                 
             case "editar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                editarProveedor();
                 break;
                 
             case "eliminar":
-                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+                eliminarProveedor();
                 break;
         }
+    }
+    
+    String ruc;
+    String razonS;
+    String email;
+    String direccion;
+    Boolean v;
+    
+    public void buscarProveedor(){
+        ruc = t1.getText();
+        
+        if(cpv.pvdBuscar(con, ruc).getProveedorRuc().equals(ruc)){
+           razonS = cpv.pvdBuscar(con, ruc).getProveedorRazonSocial();
+            t2.setText(razonS);
+
+            email = cpv.pvdBuscar(con, ruc).getProveedorEmail();
+            t3.setText(email);
+
+            direccion = cpv.pvdBuscar(con, ruc).getProveedorDireccion();
+            t4.setText(direccion); 
+        }else{
+            JOptionPane.showMessageDialog(null,"Error","El proveedor no"
+                            + " existe",JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+    
+    public void editarProveedor(){
+        razonS = t2.getText();
+        email = t3.getText();
+        direccion = t4.getText();
+        
+        Proveedor pv = new Proveedor();
+        pv.setProveedorRazonSocial(razonS);
+        pv.setProveedorEmail(email);
+        pv.setProveedorDireccion(direccion);
+        
+        int res = JOptionPane.showConfirmDialog(null,"Desea Confirmar la acción?",
+                "Alerta!",JOptionPane.QUESTION_MESSAGE,JOptionPane.YES_NO_OPTION);
+        
+        if(res == 0){
+            if(cpv.pvdEditar(con, pv) == true){
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error","No se pudo completar "
+                        + "la operación",JOptionPane.ERROR_MESSAGE); 
+            }
+        }else{
+            
+        }
+    }
+    
+    public void eliminarProveedor(){
+        ruc = t1.getText();
+        
+        int res = JOptionPane.showConfirmDialog(null,"Desea Confirmar la acción?",
+                "Alerta!",JOptionPane.QUESTION_MESSAGE,JOptionPane.YES_NO_OPTION);
+        
+        /*if(res == 0){
+            if(cpv == true){
+                JOptionPane.showMessageDialog(null, "Operación Exitosa");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error","No se pudo completar "
+                        + "la operación",
+                    JOptionPane.ERROR_MESSAGE); 
+            }
+        }else{
+            
+        }*/
+        
     }
     
 }

@@ -1,6 +1,9 @@
 
 package vista;
 
+import conexionbd.Conexion;
+import conexionbd.ControladorProducto;
+import conexionbd.ControladorProveedor;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +14,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import modelo.Producto;
 
 /**
  *
@@ -18,11 +22,14 @@ import javax.swing.JTextField;
  */
 public class VComprarProducto extends JInternalFrame implements ActionListener{
     
-    private int cantidad;
-    private double precioC;
-    private String producto;
-    
-    public VComprarProducto(){
+    Conexion con;
+    ControladorProveedor cpv;
+    ControladorProducto cpd;
+
+    public VComprarProducto(Conexion con,ControladorProveedor cpv,ControladorProducto cpd){
+        this.con = con;
+        this.cpv = cpv;
+        this.cpd = cpd;
         initComponentes();
         ventanaComprarPro();
     }
@@ -112,22 +119,57 @@ public class VComprarProducto extends JInternalFrame implements ActionListener{
                 break;
                 
             case "comprar":
-                compraRealizada();
+                comprar();
                 break;
         }
     }    
     
-    public void compraRealizada(){
+    private String proveedor;
+    private String producto;
+    private double precioC;
+    private int cantidad;
+    Boolean v;
+    
+    /*public boolean buscarProveedor(){
+        v = false;
+        proveedor = t1.getText();
+        
+        if(cpv.pvdBuscar(con, proveedor)){
+            v == true;
+        }
+        return v;
+    }*/
+    
+    public void comprar(){
         
         try {
             precioC = Double.parseDouble(t3.getText());
-            cantidad = Integer.parseInt(t4.getText());
-            producto = t2.getText();
+            cantidad = Integer.parseInt(t4.getText());  
             
-            JOptionPane.showMessageDialog(null, "Se compró "+ cantidad +" de "
-                    + producto + ", al precio de " + (precioC * cantidad));
+            if(cpd.proBuscar(con, producto).getProductoNombre().equals(producto)){
+                
+                cpd.proBuscar(con, producto).setProductoPrecioCompra(precioC);
+                
+                int res = JOptionPane.showConfirmDialog(null,"Desea Confirmar la acción?",
+                "Alerta!",JOptionPane.QUESTION_MESSAGE,JOptionPane.YES_NO_OPTION);
+        
+                if(res == 0){
+                    if(cpd.agregarStock(con,cpd.proBuscar(con, producto), cantidad) == true){
+                        JOptionPane.showMessageDialog(null, "Se compró "+ cantidad +" de "
+                        + producto + ", al precio de " + (precioC * cantidad));
+                    }   
+                }else{
+                JOptionPane.showMessageDialog(null,"Error","Se canceló "
+                            + "la operación",JOptionPane.ERROR_MESSAGE); 
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"Error","No existe el producto",
+                        JOptionPane.ERROR_MESSAGE); 
+            }
+            
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Compruebe los campos");
+            JOptionPane.showMessageDialog(null, "Verifique los campos numéricos");
         }
     }
 }

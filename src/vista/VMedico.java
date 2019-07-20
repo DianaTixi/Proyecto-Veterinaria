@@ -6,6 +6,10 @@
 package vista;
 
 import conexionbd.Conexion;
+<<<<<<< HEAD
+=======
+import conexionbd.ControladorCaracter;
+>>>>>>> origin/master
 import conexionbd.ControladorCita;
 import conexionbd.ControladorCliente;
 import conexionbd.ControladorDiagnostico;
@@ -31,6 +35,7 @@ public class VMedico extends JFrame implements ActionListener{
     
     private JDesktopPane escritorioM;
     Conexion con;
+<<<<<<< HEAD
     ControladorProducto cpd;
     ControladorCliente cc;
     ControladorMascota cm;
@@ -49,6 +54,28 @@ public class VMedico extends JFrame implements ActionListener{
             ControladorDiagnostico cd,ControladorRecetaCabecera crc,
             ControladorRecetaDetalle crd){
         this.con = con;
+=======
+    ControladorCaracter cca;
+    ControladorProducto cpd;
+    ControladorCliente cc;
+    ControladorMascota cm;
+    ControladorEspecie ces;
+    ControladorRaza cr;
+    ControladorCita cct;
+    ControladorFacturaCabecera cfc;
+    ControladorFacturaDetalle cfd;
+    ControladorDiagnostico cd;
+    ControladorRecetaCabecera crc;
+    ControladorRecetaDetalle crd;
+    
+    public VMedico(Conexion con,ControladorCaracter cca,ControladorProducto cpd,ControladorCliente cc,
+            ControladorMascota cm,ControladorEspecie ces,ControladorRaza cr,
+            ControladorCita cct,ControladorFacturaCabecera cfc,ControladorFacturaDetalle cfd,
+            ControladorDiagnostico cd,ControladorRecetaCabecera crc,
+            ControladorRecetaDetalle crd){
+        this.con = con;
+        this.cca = cca;
+>>>>>>> origin/master
         this.cpd = cpd;
         this.cc = cc;
         this.cm = cm;
@@ -150,7 +177,11 @@ public class VMedico extends JFrame implements ActionListener{
     }
 
     private void llamarVentanaCerrarS() {
+<<<<<<< HEAD
         VIniciarSesion vIS = new VIniciarSesion(con,null,null,cpd,cc,cm,ces,cr,cct,
+=======
+        VIniciarSesion vIS = new VIniciarSesion(con,cca,null,null,cpd,cc,cm,ces,cr,cct,
+>>>>>>> origin/master
                 cfc,cfd,cd,crc,crd);
         vIS.setVisible(true);
         
